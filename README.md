@@ -1,166 +1,229 @@
-## Movie Recommendation System (Streamlit)
+# 🎬 Movie Recommendation System
 
-This project is a **movie recommendation web app** built with **Streamlit**.  
-It loads a precomputed movie dataset and similarity matrix to suggest movies that are similar to a movie selected by the user.
+A **movie recommendation web application** built with **Streamlit** that suggests similar movies based on content-based filtering. The app uses a precomputed similarity matrix to provide fast movie recommendations.
 
-When you pick a movie title from the dropdown, the app returns a list of recommended movies based on similarity scores.
-
----
-
-## Features
-
-- **Interactive UI with Streamlit**
-- **Movie selection dropdown**
-- **Top-N (5) similar movie recommendations**
-- Uses **precomputed similarity matrix** for fast responses
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python)
+![GitHub](https://img.shields.io/badge/GitHub-Luckyrajbhar-181717?style=for-the-badge&logo=github)
 
 ---
 
-## Project Structure
+## ✨ Features
 
-```text
-Movie_Recommended_STM-master/
-├─ app.py                  # Main Streamlit app
-├─ movies.pkl              # Pickled movie data (titles, metadata)
-├─ similarity.pkl          # Pickled similarity matrix between movies
-├─ movie_dict.pkl          # (Optional) Additional movie dictionary data
-└─ README.md               # Project documentation
+- 🎯 **Interactive UI** - Clean and user-friendly Streamlit interface
+- 🔍 **Movie Search** - Easy dropdown selection of movie titles
+- 🎬 **Smart Recommendations** - Top 5 similar movies based on content similarity
+- ⚡ **Fast Performance** - Precomputed similarity matrix for instant results
+- 📊 **Data-Driven** - Built on TMDB movie dataset (5000+ movies)
+
+---
+
+## 📁 Project Structure
+
+```
+Movie_Recommended_STM/
+├── app.py                          # Main Streamlit application
+├── movies.pkl                      # Movie dataset (titles, metadata)
+├── movie_dict.pkl                  # Additional movie data
+├── movie_recomender_system.ipynb   # Jupyter notebook (data processing)
+├── requirements.txt                # Python dependencies
+├── render.yaml                     # Render deployment configuration
+├── .streamlit/
+│   └── config.toml                 # Streamlit configuration
+├── README.md                       # Project documentation
+├── DEPLOYMENT.md                   # General deployment guide
+└── RENDER_DEPLOYMENT.md            # Render-specific deployment guide
 ```
 
 ---
 
-## Prerequisites
+## 🚀 Quick Start
 
-- **Python**: 3.8–3.11 recommended
-- **Operating System**: Windows 10 (your current setup) or any OS that supports Python
+### Prerequisites
 
-You will also need the following Python packages:
+- **Python**: 3.8–3.11 (recommended)
+- **pip**: Python package manager
 
-- `streamlit`
-- `pandas`
-- `pickle` (part of Python standard library, no install required)
+### Installation
 
----
-
-## Setup Instructions (Windows / general)
-
-1. **Clone or extract the project**
-
-   If you downloaded a ZIP, make sure it is extracted to a folder like:
-
-   ```text
-   C:\Users\lucky\Downloads\Movie_Recommended_STM-master
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Luckyrajbhar/Movie_Recommended_STM.git
+   cd Movie_Recommended_STM
    ```
 
-2. **Open a terminal in the project folder**
-
-   - Press `Win + R`, type `powershell`, and press Enter.
-   - Navigate to the folder:
-
-   ```powershell
-   cd "C:\Users\lucky\Downloads\Movie_Recommended_STM-master\Movie_Recommended_STM-master"
+2. **Create a virtual environment** (recommended)
+   ```bash
+   python -m venv venv
+   
+   # On Windows
+   venv\Scripts\activate
+   
+   # On macOS/Linux
+   source venv/bin/activate
    ```
 
-3. **(Optional but recommended) Create a virtual environment**
-
-   ```powershell
-   python -m venv .venv
-   .venv\Scripts\activate
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
    ```
 
-4. **Install dependencies**
+### Running the App
 
-   ```powershell
-   pip install streamlit pandas
-   ```
-
-   If you already have these packages installed, you can skip this step.
-
----
-
-## How to Run the App
-
-From inside the project directory (same folder as `app.py`), run:
-
-```powershell
+```bash
 streamlit run app.py
 ```
 
-You should see output similar to:
+The app will open in your browser at `http://localhost:8501`
 
-```text
-You can now view your Streamlit app in your browser.
+---
 
-Local URL: http://localhost:8501
-Network URL: http://192.168.x.x:8501
+## 🎮 How to Use
+
+1. **Select a Movie**: Choose a movie from the dropdown menu
+2. **Get Recommendations**: Click the "recommend movies" button
+3. **View Results**: See the top 5 recommended movies displayed
+
+---
+
+## 📦 Dependencies
+
+- `streamlit` - Web application framework
+- `pandas` - Data manipulation and analysis
+- `pickle` - For loading precomputed data (built-in)
+
+See `requirements.txt` for specific versions.
+
+---
+
+## 🚢 Deployment
+
+This project is ready to deploy on multiple platforms:
+
+### 🌐 Streamlit Cloud (Recommended - Easiest)
+
+**Repository**: [https://github.com/Luckyrajbhar/Movie_Recommended_STM](https://github.com/Luckyrajbhar/Movie_Recommended_STM)
+
+1. Go to [share.streamlit.io](https://share.streamlit.io)
+2. Sign in with GitHub
+3. Click "New app"
+4. Select repository: `Luckyrajbhar/Movie_Recommended_STM`
+5. Branch: `master`
+6. Main file: `app.py`
+7. Deploy!
+
+**See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.**
+
+### ☁️ Render
+
+1. Connect your GitHub repository
+2. Use the provided `render.yaml` configuration
+3. Set start command: `streamlit run app.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true`
+
+**See [RENDER_DEPLOYMENT.md](RENDER_DEPLOYMENT.md) for detailed instructions.**
+
+### Other Platforms
+
+- **Railway**: Great for Python apps with auto-detection
+- **Heroku**: Traditional option (may require paid tier)
+- **AWS/GCP/Azure**: Enterprise deployment options
+
+---
+
+## ⚠️ Important Notes
+
+### Similarity.pkl File
+
+The app requires `similarity.pkl` to function. This file is excluded from the repository due to size limitations.
+
+**Options to add it:**
+
+1. **Generate from Notebook**: Run `movie_recomender_system.ipynb` to generate the file
+2. **Use Git LFS**: For large files
+   ```bash
+   git lfs install
+   git lfs track "*.pkl"
+   git add similarity.pkl
+   git commit -m "Add similarity.pkl with LFS"
+   ```
+3. **Upload Separately**: Add via platform-specific file upload features
+
+### File Requirements
+
+- ✅ `app.py` - Main application
+- ✅ `movies.pkl` - Movie dataset (included)
+- ⚠️ `similarity.pkl` - Similarity matrix (needs to be added)
+- ✅ `requirements.txt` - Dependencies (included)
+
+---
+
+## 🛠️ Customization
+
+- **Change recommendations count**: Modify the `[1:6]` slice in `app.py` to show more/fewer movies
+- **Add movie posters**: Integrate with TMDB API to display movie posters
+- **Enhanced UI**: Customize Streamlit components and styling
+- **Additional features**: Add genres, ratings, or descriptions to recommendations
+
+---
+
+## 📝 Development
+
+### Running Locally
+
+```bash
+streamlit run app.py
 ```
 
-- **Local URL** opens the app in your browser on your own machine.
-- **Network URL** lets other devices on your network access your app (if your firewall allows it).
+### Project Structure
 
-Open the URL in your browser (usually `http://localhost:8501`).
-
----
-
-## How to Use
-
-1. Open the app in your browser.
-2. Use the **"Search Movies"** dropdown to select a movie title.
-3. Click the **"recommend movies"** button.
-4. The app will display a list of **5 recommended movies** similar to your selected movie.
+- `app.py` - Main application logic and UI
+- `movie_recomender_system.ipynb` - Data processing and model training
+- `.pkl` files - Precomputed datasets and similarity matrices
 
 ---
 
-## Customization Ideas
+## 🤝 Contributing
 
-- Change the number of recommendations returned (currently 5 in `app.py`).
-- Enhance the UI with posters, genres, or ratings.
-- Replace the dataset (`movies.pkl` and `similarity.pkl`) with your own movie data.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
----
-
-## Notes
-
-- Ensure `movies.pkl` and `similarity.pkl` are in the **same directory** as `app.py` when you run the app.
-- If you move files around, update the file paths inside `app.py`.
-- If you face module import or version issues, try creating a fresh virtual environment and reinstalling dependencies.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
 ---
 
-## Deployment
+## 📄 License
 
-### Streamlit Cloud (Recommended)
+This project is open source and available for educational purposes.
 
-Streamlit Cloud is the easiest way to deploy Streamlit apps. Follow these steps:
+---
 
-1. **Repository**: Your code is already on GitHub at [https://github.com/Luckyrajbhar/Movie_Recommended_STM](https://github.com/Luckyrajbhar/Movie_Recommended_STM)
+## 👤 Author
 
-2. **Deploy on Streamlit Cloud**
-   - Go to [share.streamlit.io](https://share.streamlit.io)
-   - Sign in with your GitHub account
-   - Click "New app"
-   - Repository: `Luckyrajbhar/Movie_Recommended_STM`
-   - Branch: `master`
-   - Main file path: `app.py`
-   - Click "Deploy"
+**Luckyrajbhar**
 
-3. **Your app will be live at:**
-   ```
-   https://your-app-name.streamlit.app
-   ```
+- GitHub: [@Luckyrajbhar](https://github.com/Luckyrajbhar)
+- Repository: [Movie_Recommended_STM](https://github.com/Luckyrajbhar/Movie_Recommended_STM)
 
-### Alternative Deployment Options
+---
 
-- **Railway**: Great for Python apps
-- **Render**: Easy deployment with free tier  
-- **Heroku**: Traditional option (may require paid tier)
+## 🙏 Acknowledgments
 
-### Important Notes for Deployment
+- TMDB dataset for movie data
+- Streamlit team for the amazing framework
+- Open source community
 
-- ⚠️ **Similarity.pkl File**: This file is excluded from git due to size. You'll need to either:
-  - Generate it from the notebook and upload it separately
-  - Use Git LFS for large files
-  - Host it separately and load it from a URL
-- File size limits: Check platform limits for `.pkl` files (typically 100MB-500MB)
-- Ensure all required files are accessible when deploying
+---
 
+## 📚 Additional Resources
+
+- [Streamlit Documentation](https://docs.streamlit.io/)
+- [Streamlit Cloud Deployment](https://docs.streamlit.io/streamlit-community-cloud)
+- [Deployment Guide](DEPLOYMENT.md)
+- [Render Deployment Guide](RENDER_DEPLOYMENT.md)
+
+---
+
+**⭐ If you find this project helpful, please consider giving it a star!**
