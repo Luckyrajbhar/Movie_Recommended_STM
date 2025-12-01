@@ -15,12 +15,33 @@ def recommend(movie):
 
     return recommended_movies
 
-with open("movies.pkl", "rb") as f:
-    movies = pickle.load(f)
-movie=pd.DataFrame(movies)
+# Load movies data
+try:
+    with open("movies.pkl", "rb") as f:
+        movies = pickle.load(f)
+    movie = pd.DataFrame(movies)
+except FileNotFoundError:
+    st.error("❌ Error: movies.pkl file not found. Please ensure the file is in the repository.")
+    st.stop()
 
-with open("similarity.pkl", "rb") as f:
-    similarity = pickle.load(f)
+# Load similarity data
+try:
+    with open("similarity.pkl", "rb") as f:
+        similarity = pickle.load(f)
+except FileNotFoundError:
+    st.error("""
+    ❌ **Error: similarity.pkl file not found!**
+    
+    The app requires the `similarity.pkl` file to function. 
+    
+    **Solutions:**
+    1. Add similarity.pkl to your GitHub repository
+    2. Generate it from your notebook if you have the data
+    3. Contact the repository owner
+    
+    The file should be in the same directory as app.py.
+    """)
+    st.stop()
 
 
 # movies_list=pickle.load(open('movies.pkl','rb'))
