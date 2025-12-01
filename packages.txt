@@ -1,0 +1,6 @@
+# This file is used for Streamlit Cloud deployment
+# If your app requires system packages, list them here
+# Example:
+# ffmpeg
+# libgomp1
+
