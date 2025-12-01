@@ -29,7 +29,11 @@ Thumbs.db
 # Streamlit
 .streamlit/secrets.toml
 
-# Optional: Large model files (uncomment if you don't want to commit them)
+# Large similarity file (excluded from repository)
+similarity.pkl
+"similarity.pkl"
+
+# Optional: Other large model files (uncomment if needed)
 # *.pkl
 # *.pickle
 

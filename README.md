@@ -133,47 +133,34 @@ Open the URL in your browser (usually `http://localhost:8501`).
 
 Streamlit Cloud is the easiest way to deploy Streamlit apps. Follow these steps:
 
-1. **Push your code to GitHub**
-   - Create a new repository on GitHub
-   - Push all your files including:
-     - `app.py`
-     - `movies.pkl`
-     - `similarity.pkl` (required)
-     - `movie_dict.pkl` (if used)
-     - `requirements.txt`
+1. **Repository**: Your code is already on GitHub at [https://github.com/Luckyrajbhar/Movie_Recommended_STM](https://github.com/Luckyrajbhar/Movie_Recommended_STM)
 
 2. **Deploy on Streamlit Cloud**
    - Go to [share.streamlit.io](https://share.streamlit.io)
    - Sign in with your GitHub account
    - Click "New app"
-   - Select your repository
-   - Set the main file path to `app.py`
+   - Repository: `Luckyrajbhar/Movie_Recommended_STM`
+   - Branch: `master`
+   - Main file path: `app.py`
    - Click "Deploy"
 
 3. **Your app will be live at:**
    ```
-   https://your-username-streamlit-app.streamlit.app
+   https://your-app-name.streamlit.app
    ```
 
-### Vercel Deployment
+### Alternative Deployment Options
 
-**Note:** Vercel is not ideal for Streamlit apps as it's designed for static sites and serverless functions. However, you can use it with limitations:
-
-**Option 1: Use Streamlit Cloud (Recommended)**
-- Streamlit Cloud is free and optimized for Streamlit apps
-
-**Option 2: Alternative Platforms**
 - **Railway**: Great for Python apps
-- **Render**: Easy deployment with free tier
+- **Render**: Easy deployment with free tier  
 - **Heroku**: Traditional option (may require paid tier)
-
-**Option 3: Convert to Vercel-compatible**
-- Rewrite the app using Next.js/React with Python API routes
-- More complex but fully compatible with Vercel
 
 ### Important Notes for Deployment
 
-- ⚠️ **Missing File**: The app requires `similarity.pkl` to function. Make sure this file exists before deploying.
+- ⚠️ **Similarity.pkl File**: This file is excluded from git due to size. You'll need to either:
+  - Generate it from the notebook and upload it separately
+  - Use Git LFS for large files
+  - Host it separately and load it from a URL
 - File size limits: Check platform limits for `.pkl` files (typically 100MB-500MB)
-- Ensure all required files are in the repository root
+- Ensure all required files are accessible when deploying
 
