@@ -17,8 +17,8 @@ def recommend(movie):
 
 # Load movies data
 try:
-    with open("movies.pkl", "rb") as f:
-        movies = pickle.load(f)
+with open("movies.pkl", "rb") as f:
+    movies = pickle.load(f)
     movie = pd.DataFrame(movies)
 except FileNotFoundError:
     st.error("❌ Error: movies.pkl file not found. Please ensure the file is in the repository.")
@@ -26,8 +26,8 @@ except FileNotFoundError:
 
 # Load similarity data
 try:
-    with open("similarity.pkl", "rb") as f:
-        similarity = pickle.load(f)
+with open("similarity.pkl", "rb") as f:
+    similarity = pickle.load(f)
 except FileNotFoundError:
     st.error("""
     ❌ **Error: similarity.pkl file not found!**

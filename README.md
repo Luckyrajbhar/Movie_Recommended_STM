@@ -27,12 +27,13 @@ Movie_Recommended_STM/
 ├── movie_dict.pkl                  # Additional movie data
 ├── movie_recomender_system.ipynb   # Jupyter notebook (data processing)
 ├── requirements.txt                # Python dependencies
-├── render.yaml                     # Render deployment configuration
 ├── .streamlit/
 │   └── config.toml                 # Streamlit configuration
+├── scripts/
+│   └── generate_similarity.py      # Helper to build similarity.pkl
+├── GENERATE_SIMILARITY.md          # Guide to regenerate similarity.pkl
 ├── README.md                       # Project documentation
-├── DEPLOYMENT.md                   # General deployment guide
-└── RENDER_DEPLOYMENT.md            # Render-specific deployment guide
+└── DEPLOYMENT.md                   # Streamlit Cloud deployment guide
 ```
 
 ---
@@ -114,14 +115,6 @@ This project is ready to deploy on multiple platforms:
 
 **See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions.**
 
-### ☁️ Render
-
-1. Connect your GitHub repository
-2. Use the provided `render.yaml` configuration
-3. Set start command: `streamlit run app.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true`
-
-**See [RENDER_DEPLOYMENT.md](RENDER_DEPLOYMENT.md) for detailed instructions.**
-
 ### Other Platforms
 
 - **Railway**: Great for Python apps with auto-detection
@@ -134,19 +127,20 @@ This project is ready to deploy on multiple platforms:
 
 ### Similarity.pkl File
 
-The app requires `similarity.pkl` to function. This file is excluded from the repository due to size limitations.
+The app requires `similarity.pkl` to function. If the file is missing you will see:
 
-**Options to add it:**
+```
+❌ Error: similarity.pkl file not found!
+```
 
-1. **Generate from Notebook**: Run `movie_recomender_system.ipynb` to generate the file
-2. **Use Git LFS**: For large files
+**How to fix it:**
+
+1. Run the helper script:
    ```bash
-   git lfs install
-   git lfs track "*.pkl"
-   git add similarity.pkl
-   git commit -m "Add similarity.pkl with LFS"
+   python scripts/generate_similarity.py
    ```
-3. **Upload Separately**: Add via platform-specific file upload features
+2. Or follow the detailed guide in [GENERATE_SIMILARITY.md](GENERATE_SIMILARITY.md).
+3. Commit the generated file (or track it with Git LFS) so Streamlit Cloud can load it.
 
 ### File Requirements
 
@@ -222,7 +216,7 @@ This project is open source and available for educational purposes.
 - [Streamlit Documentation](https://docs.streamlit.io/)
 - [Streamlit Cloud Deployment](https://docs.streamlit.io/streamlit-community-cloud)
 - [Deployment Guide](DEPLOYMENT.md)
-- [Render Deployment Guide](RENDER_DEPLOYMENT.md)
+- [Generate Similarity Matrix](GENERATE_SIMILARITY.md)
 
 ---
 

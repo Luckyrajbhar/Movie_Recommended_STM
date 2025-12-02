@@ -29,9 +29,10 @@ Thumbs.db
 # Streamlit
 .streamlit/secrets.toml
 
-# Large similarity file (excluded from repository)
-similarity.pkl
-"similarity.pkl"
+# Similarity matrix (tracked so deployments can include it)
+# Uncomment the lines below if you do NOT want to commit the generated file.
+# similarity.pkl
+# "similarity.pkl"
 
 # Optional: Other large model files (uncomment if needed)
 # *.pkl

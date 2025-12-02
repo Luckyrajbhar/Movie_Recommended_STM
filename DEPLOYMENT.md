@@ -60,45 +60,23 @@ https://movie-recommender.streamlit.app
 
 ## ⚠️ Important: Similarity.pkl File
 
-The app requires `similarity.pkl` to function. This file is currently excluded from git due to size.
+The app requires `similarity.pkl` to function. If it is missing you will see an error banner in the Streamlit UI.
 
-### Option 1: Add to Repository (Recommended)
+### Recommended approach
 
-If the file is manageable in size:
+1. Run the helper script (after installing dependencies):
+   ```powershell
+   python scripts/generate_similarity.py
+   ```
+2. Verify the file exists next to `app.py`.
+3. Commit it (or track it with Git LFS if >100 MB):
+   ```powershell
+   git add similarity.pkl
+   git commit -m "Add similarity matrix"
+   git push origin master
+   ```
 
-```powershell
-# Remove from .gitignore temporarily
-# Edit .gitignore and comment out similarity.pkl
-
-git add similarity.pkl
-git commit -m "Add similarity.pkl"
-git push origin master
-```
-
-### Option 2: Use Git LFS (For Large Files)
-
-If the file is too large (>100MB):
-
-```powershell
-# Install Git LFS
-git lfs install
-
-# Track .pkl files
-git lfs track "*.pkl"
-
-# Add the file
-git add similarity.pkl .gitattributes
-git commit -m "Add similarity.pkl with Git LFS"
-git push origin master
-```
-
-### Option 3: Generate from Notebook
-
-If you have the data, generate the file:
-
-1. Run `movie_recomender_system.ipynb`
-2. Export/generate `similarity.pkl`
-3. Add to repository using Option 1 or 2 above
+See [GENERATE_SIMILARITY.md](GENERATE_SIMILARITY.md) for detailed instructions, troubleshooting tips, and Git LFS steps if needed.
 
 ---
 
