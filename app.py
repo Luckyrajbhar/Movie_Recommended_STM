@@ -49,13 +49,41 @@ except FileNotFoundError:
 
 
 
-st.title("movies recommender systems")
+# Streamlit App Configuration
+st.set_page_config(
+    page_title="Movie Recommendation System",
+    page_icon="🎬",
+    layout="wide"
+)
 
+# Main Title
+st.title("🎬 Movie Recommendation System")
+st.markdown("---")
 
-selected_movie_name=st.selectbox("Search Movies",
-                    movie['title'].values)
+# Sidebar
+with st.sidebar:
+    st.header("About")
+    st.info("""
+    This app recommends movies based on content similarity.
+    Select a movie and get personalized recommendations!
+    """)
 
-if st.button("recommend movies"):
-    recommendation=recommend(selected_movie_name)
-    for i in recommendation:
-        st.write(i)
+# Movie Selection
+st.subheader("Select a Movie")
+selected_movie_name = st.selectbox(
+    "Choose a movie from the list:",
+    movie['title'].values,
+    help="Select a movie to get recommendations"
+)
+
+# Recommendation Button
+if st.button("🎯 Get Recommendations", type="primary", use_container_width=True):
+    with st.spinner("Finding similar movies..."):
+        recommendation = recommend(selected_movie_name)
+    
+    st.success(f"Movies similar to **{selected_movie_name}**:")
+    st.markdown("---")
+    
+    # Display recommendations
+    for idx, movie_title in enumerate(recommendation, 1):
+        st.markdown(f"**{idx}.** {movie_title}")
